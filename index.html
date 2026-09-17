@@ -4,230 +4,403 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>양종호 | Sports Scientist &amp; Neuromechanics Researcher</title>
-  <meta name="description" content="양종호 연구원 - 생체역학, 운동제어, sEMG 및 모션 캡처 기반 데이터 엔지니어링" />
+  <meta name="description" content="스포츠과학자 양종호 - Find the Why. Nothing moves without a reason." />
 
-  <!-- Tailwind CSS CDN -->
+  <!-- Tailwind CSS & Lucide Icons -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
 
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
     body {
       font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
     }
     .mono {
       font-family: 'JetBrains Mono', monospace;
     }
-    @media print {
-      body { background-color: #ffffff !important; color: #111827 !important; }
-      .no-print { display: none !important; }
-      .print-border { border-color: #e5e7eb !important; }
-      .shadow-sm, .shadow-md, .shadow-lg { box-shadow: none !important; }
+    .tab-btn.active {
+      color: #0f172a;
+      border-color: #0f172a;
+      font-weight: 700;
+    }
+    .tab-btn {
+      color: #64748b;
+      border-color: transparent;
+      transition: all 0.2s ease;
+    }
+    .tab-btn:hover {
+      color: #334155;
     }
   </style>
 </head>
-<body class="bg-slate-50 text-slate-800 antialiased selection:bg-slate-900 selection:text-white py-10 px-4 md:px-0">
+<body class="bg-[#fafafa] text-slate-800 antialiased selection:bg-slate-900 selection:text-white">
 
-  <div class="max-w-4xl mx-auto bg-white border border-slate-200/80 rounded-2xl shadow-sm p-8 md:p-12">
+  <!-- Main Container -->
+  <div class="max-w-4xl mx-auto min-h-screen bg-white border-x border-slate-200/80 flex flex-col shadow-sm">
     
-    <!-- Top Action Bar -->
-    <div class="flex justify-between items-center pb-6 mb-8 border-b border-slate-100 no-print">
-      <div class="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200/60">
-        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-        Curriculum Vitae
-      </div>
-      <div class="flex items-center gap-2">
-        <button onclick="window.print()" class="flex items-center gap-1.5 text-xs font-medium text-slate-600 hover:text-slate-900 bg-slate-100 hover:bg-slate-200/70 px-3 py-1.5 rounded-lg transition-colors">
-          <i data-lucide="printer" class="w-3.5 h-3.5"></i>
-          PDF / 인쇄
-        </button>
-      </div>
+    <!-- Top Hero Image Banner -->
+    <div class="w-full bg-black overflow-hidden border-b border-slate-200">
+      <img 
+        src="hero-banner.jpg" 
+        alt="양종호 | Find the Why. Nothing moves without a reason." 
+        class="w-full h-auto object-cover max-h-[320px] mx-auto block"
+      />
     </div>
 
-    <!-- Header Section -->
-    <header class="space-y-4">
-      <div class="flex flex-col md:flex-row md:items-baseline md:justify-between gap-2">
-        <div>
-          <h1 class="text-3xl md:text-4xl font-extrabold text-slate-950 tracking-tight">양종호</h1>
-          <p class="text-base md:text-lg font-medium text-slate-600 mt-1">
-            Sports Scientist <span class="text-slate-300">|</span> Neuromechanics &amp; Motor Control Researcher
+    <!-- Sticky Navigation Bar -->
+    <nav class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-slate-200 px-4 md:px-8">
+      <div class="flex items-center justify-between overflow-x-auto no-scrollbar py-1">
+        <div class="flex gap-2 sm:gap-6 min-w-max">
+          <button onclick="switchTab('about')" id="btn-about" class="tab-btn active text-sm sm:text-base py-3 px-1 border-b-2 font-medium flex items-center gap-1.5">
+            <i data-lucide="user" class="w-4 h-4"></i> About Me
+          </button>
+          <button onclick="switchTab('news')" id="btn-news" class="tab-btn text-sm sm:text-base py-3 px-1 border-b-2 font-medium flex items-center gap-1.5">
+            <i data-lucide="bell" class="w-4 h-4"></i> News
+          </button>
+          <button onclick="switchTab('research')" id="btn-research" class="tab-btn text-sm sm:text-base py-3 px-1 border-b-2 font-medium flex items-center gap-1.5">
+            <i data-lucide="folder-git-2" class="w-4 h-4"></i> Research &amp; Project
+          </button>
+          <button onclick="switchTab('publications')" id="btn-publications" class="tab-btn text-sm sm:text-base py-3 px-1 border-b-2 font-medium flex items-center gap-1.5">
+            <i data-lucide="book-open" class="w-4 h-4"></i> Publications
+          </button>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="hidden sm:flex items-center gap-3 text-slate-400 pl-4">
+          <a href="https://github.com/whymv" target="_blank" class="hover:text-slate-900 transition-colors p-1" title="GitHub">
+            <i data-lucide="github" class="w-4 h-4"></i>
+          </a>
+          <a href="mailto:contact@zwolf.org" class="hover:text-slate-900 transition-colors p-1" title="Email">
+            <i data-lucide="mail" class="w-4 h-4"></i>
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main class="flex-1 p-6 md:p-10">
+
+      <!-- ================= TAB 1: ABOUT ME ================= -->
+      <section id="tab-about" class="tab-content space-y-10">
+        
+        <!-- Intro Statement -->
+        <div class="space-y-4">
+          <div class="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-slate-500 bg-slate-100 px-3 py-1 rounded-md">
+            Profile &amp; Biography
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-bold text-slate-950 tracking-tight">
+            Nothing moves without a reason.
+          </h2>
+          <p class="text-slate-600 leading-relaxed text-sm sm:text-base">
+            인체의 모든 움직임에는 생체역학적 원인과 신경근 제어 메커니즘이 존재합니다. 
+            현장의 선수 트레이닝 및 운동 재활 경험과 sEMG, IMU, 비마커 모션 캡처 기반의 데이터 엔지니어링을 결합하여 움직임의 이유를 밝히고 최적의 솔루션을 설계합니다.
           </p>
         </div>
-        <div class="text-xs text-slate-500 font-normal">
-          Last Updated: 2026. 09
-        </div>
-      </div>
 
-      <p class="text-sm text-slate-600 leading-relaxed max-w-3xl pt-1">
-        인체 운동 제어 메커니즘과 생체역학적 신호 분석을 바탕으로 엘리트 선수의 부상 예방 및 퍼포먼스 증진 솔루션을 설계합니다. 
-        IMU·sEMG 센서 데이터 파이프라인 구축 및 비마커 컴퓨터 비전 모션 캡처 기술을 연구에 융합하고 있습니다.
-      </p>
-
-      <!-- Contact Badges -->
-      <div class="flex flex-wrap items-center gap-y-2 gap-x-4 pt-2 text-xs text-slate-600 font-medium">
-        <a href="mailto:your-email@example.com" class="flex items-center gap-1.5 hover:text-slate-950 transition-colors">
-          <i data-lucide="mail" class="w-3.5 h-3.5 text-slate-400"></i>
-          your-email@example.com
-        </a>
-        <a href="https://github.com/your-username" target="_blank" class="flex items-center gap-1.5 hover:text-slate-950 transition-colors">
-          <i data-lucide="github" class="w-3.5 h-3.5 text-slate-400"></i>
-          github.com/your-username
-        </a>
-        <span class="flex items-center gap-1.5 text-slate-500">
-          <i data-lucide="map-pin" class="w-3.5 h-3.5 text-slate-400"></i>
-          Republic of Korea
-        </span>
-      </div>
-    </header>
-
-    <div class="my-8 border-t border-slate-100"></div>
-
-    <div class="space-y-10">
-
-      <!-- 1. Education -->
-      <section>
-        <div class="flex items-center gap-2 mb-4">
-          <i data-lucide="graduation-cap" class="w-4 h-4 text-slate-900"></i>
-          <h2 class="text-sm font-bold uppercase tracking-wider text-slate-900">Education</h2>
-        </div>
-        <div class="space-y-4 border-l-2 border-slate-100 pl-4 ml-1">
-          <div>
-            <div class="flex justify-between items-baseline">
-              <h3 class="text-sm font-semibold text-slate-900">고려대학교 일반대학원 체육학과</h3>
-              <span class="mono text-xs text-slate-400">박사과정 수료</span>
+        <!-- Education -->
+        <div class="space-y-4">
+          <h3 class="text-sm font-bold uppercase tracking-wider text-slate-900 flex items-center gap-2">
+            <i data-lucide="graduation-cap" class="w-4 h-4"></i> Education
+          </h3>
+          <div class="space-y-3 border-l-2 border-slate-100 pl-4 ml-1">
+            <div>
+              <div class="flex justify-between items-baseline">
+                <span class="text-sm font-semibold text-slate-900">고려대학교 일반대학원 체육학과</span>
+                <span class="mono text-xs text-slate-400">박사과정 수료</span>
+              </div>
+              <p class="text-xs text-slate-600 mt-0.5">신경역학 및 운동제어 (Neuromechanics &amp; Motor Control)</p>
             </div>
-            <p class="text-xs text-slate-600 mt-0.5">신경역학 및 운동제어 (Neuromechanics &amp; Motor Control)</p>
-          </div>
-          <div>
-            <div class="flex justify-between items-baseline">
-              <h3 class="text-sm font-semibold text-slate-900">국민대학교 일반대학원 체육학과</h3>
-              <span class="mono text-xs text-slate-400">석사</span>
+            <div>
+              <div class="flex justify-between items-baseline">
+                <span class="text-sm font-semibold text-slate-900">국민대학교 일반대학원 체육학과</span>
+                <span class="mono text-xs text-slate-400">석사 졸업</span>
+              </div>
+              <p class="text-xs text-slate-600 mt-0.5">운동역학 (Biomechanics)</p>
             </div>
-            <p class="text-xs text-slate-600 mt-0.5">운동역학 (Biomechanics)</p>
-          </div>
-          <div>
-            <div class="flex justify-between items-baseline">
-              <h3 class="text-sm font-semibold text-slate-900">국민대학교 스포츠건강재활학부</h3>
-              <span class="mono text-xs text-slate-400">학사</span>
+            <div>
+              <div class="flex justify-between items-baseline">
+                <span class="text-sm font-semibold text-slate-900">국민대학교 스포츠건강재활학부</span>
+                <span class="mono text-xs text-slate-400">학사 졸업</span>
+              </div>
+              <p class="text-xs text-slate-600 mt-0.5">스포츠건강재활학 전공</p>
             </div>
-            <p class="text-xs text-slate-600 mt-0.5">스포츠건강재활학 전공</p>
           </div>
         </div>
+
+        <!-- Experience -->
+        <div class="space-y-4">
+          <h3 class="text-sm font-bold uppercase tracking-wider text-slate-900 flex items-center gap-2">
+            <i data-lucide="briefcase" class="w-4 h-4"></i> Professional Experience
+          </h3>
+          <div class="space-y-4 border-l-2 border-slate-100 pl-4 ml-1">
+            <div>
+              <div class="flex justify-between items-baseline">
+                <span class="text-sm font-semibold text-slate-900">엘리프 트레이닝 랩 (ELIF Training Lab)</span>
+                <span class="mono text-xs font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded">Present</span>
+              </div>
+              <p class="text-xs text-slate-500 mb-1">팀장 / 퍼포먼스 디렉터</p>
+              <p class="text-xs text-slate-600 leading-relaxed">
+                엘리트 선수 및 동호인 기능적 움직임 평가(FMA), 퍼포먼스 향상 트레이닝 및 부상 재활 프로그램 디렉팅
+              </p>
+            </div>
+            <div>
+              <div class="flex justify-between items-baseline">
+                <span class="text-sm font-semibold text-slate-900">고려대학교 운동제어 및 생체역학 연구실</span>
+                <span class="mono text-xs text-slate-400">Researcher</span>
+              </div>
+              <p class="text-xs text-slate-500 mb-1">연구원</p>
+              <p class="text-xs text-slate-600 leading-relaxed">
+                만성 발목 불안정성(CAI), 피로 유발 환경에서의 하지 생체역학 및 근 시너지(Muscle Synergy) 메커니즘 연구
+              </p>
+            </div>
+            <div>
+              <div class="flex justify-between items-baseline">
+                <span class="text-sm font-semibold text-slate-900">엘리트 선수단 &amp; 체전 현장 의무지원</span>
+                <span class="mono text-xs text-slate-400">AT</span>
+              </div>
+              <p class="text-xs text-slate-500 mb-1">선수트레이너</p>
+              <p class="text-xs text-slate-600 leading-relaxed">
+                제99회~101회 전국체육대회(레슬링, 펜싱, 스피드스케이팅) 및 제39회 전국장애인체육대회 골볼 지원팀장, 포천시청 육상부 등 현장 의무 지원
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Skills & Credentials -->
+        <div class="space-y-4">
+          <h3 class="text-sm font-bold uppercase tracking-wider text-slate-900 flex items-center gap-2">
+            <i data-lucide="award" class="w-4 h-4"></i> Certifications &amp; Toolkit
+          </h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+            <div class="p-3.5 bg-slate-50 rounded-xl border border-slate-100">
+              <span class="font-semibold text-slate-900 block mb-1">Licenses &amp; Credentials</span>
+              <ul class="space-y-1 text-slate-600">
+                <li>• 선수트레이너 (iKATA)</li>
+                <li>• NASM-PES (미국스포츠의학회 퍼포먼스 전문가)</li>
+                <li>• 전문·생활·노인 스포츠지도사 (보디빌딩 2급)</li>
+                <li>• Biomechanical Analyst of Visual3D (Lv.2)</li>
+              </ul>
+            </div>
+            <div class="p-3.5 bg-slate-50 rounded-xl border border-slate-100">
+              <span class="font-semibold text-slate-900 block mb-1">Data &amp; Development</span>
+              <ul class="space-y-1 text-slate-600">
+                <li>• Python (NumPy, SciPy, PyQt6), MATLAB</li>
+                <li>• sEMG Wavelet Transform &amp; PCA Synergies</li>
+                <li>• IMU Sensors (Movella DOT) &amp; OpenSim</li>
+                <li>• Computer Vision (Markerless 3D Mocap)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
       </section>
 
-      <!-- 2. Research & Clinical Experience -->
-      <section>
-        <div class="flex items-center gap-2 mb-4">
-          <i data-lucide="briefcase" class="w-4 h-4 text-slate-900"></i>
-          <h2 class="text-sm font-bold uppercase tracking-wider text-slate-900">Experience &amp; Appointments</h2>
+      <!-- ================= TAB 2: NEWS ================= -->
+      <section id="tab-news" class="tab-content hidden space-y-6">
+        <div class="space-y-1">
+          <h2 class="text-xl font-bold text-slate-950">Updates &amp; Announcements</h2>
+          <p class="text-xs text-slate-500">연구, 강연, 출강 및 학회 활동 소식입니다.</p>
         </div>
-        <div class="space-y-5 border-l-2 border-slate-100 pl-4 ml-1">
-          <div>
-            <div class="flex justify-between items-baseline">
-              <h3 class="text-sm font-semibold text-slate-900">엘리프 트레이닝 랩 (ELIF Training Lab)</h3>
-              <span class="mono text-xs font-medium text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded">Present</span>
+
+        <div class="space-y-4">
+          <!-- News Item -->
+          <div class="p-4 bg-white rounded-xl border border-slate-200/80 hover:border-slate-300 transition-colors">
+            <div class="flex items-center gap-2 text-xs text-slate-400 mono mb-1.5">
+              <span>2026. 06</span>
+              <span>•</span>
+              <span class="text-emerald-600 font-medium">Research</span>
             </div>
-            <p class="text-xs text-slate-500 mb-1">팀장 / 퍼포먼스 디렉터</p>
+            <h3 class="text-sm font-semibold text-slate-900 mb-1">
+              만성 발목 불안정성(CAI) 및 근피로 관련 생체역학 논문 투고 준비
+            </h3>
             <p class="text-xs text-slate-600 leading-relaxed">
-              엘리트 선수 및 동호인 대상 기능적 움직임 평가(FMA), 부상 메커니즘 분석 및 맞춤형 피지컬 트레이닝 설계
+              sEMG 신호 처리 기법 및 웨이블릿 강도 분석(Wavelet Intensity Analysis)을 적용한 학술 논문 집필 진행 중.
             </p>
           </div>
 
-          <div>
-            <div class="flex justify-between items-baseline">
-              <h3 class="text-sm font-semibold text-slate-900">고려대학교 운동제어 및 생체역학 연구실</h3>
-              <span class="mono text-xs text-slate-400">Researcher</span>
+          <div class="p-4 bg-white rounded-xl border border-slate-200/80 hover:border-slate-300 transition-colors">
+            <div class="flex items-center gap-2 text-xs text-slate-400 mono mb-1.5">
+              <span>2026. 05</span>
+              <span>•</span>
+              <span class="text-blue-600 font-medium">Development</span>
             </div>
-            <p class="text-xs text-slate-500 mb-1">연구원</p>
+            <h3 class="text-sm font-semibold text-slate-900 mb-1">
+              JH-Mechanics 멀티 센서 모션 캡처 분석 파이프라인 개발
+            </h3>
             <p class="text-xs text-slate-600 leading-relaxed">
-              만성 발목 불안정성(CAI), 피로 환경에서의 하지 역학 및 신경근 제어 메커니즘 연구 수행
+              PyQt6 GUI 및 IMU 센서 실시간 데이터 수집 모듈 구축.
             </p>
           </div>
 
-          <div>
-            <div class="flex justify-between items-baseline">
-              <h3 class="text-sm font-semibold text-slate-900">엘리트 선수단 &amp; 체전 현장 의무지원</h3>
-              <span class="mono text-xs text-slate-400">Athletic Trainer</span>
+          <div class="p-4 bg-white rounded-xl border border-slate-200/80 hover:border-slate-300 transition-colors">
+            <div class="flex items-center gap-2 text-xs text-slate-400 mono mb-1.5">
+              <span>Ongoing</span>
+              <span>•</span>
+              <span class="text-slate-600 font-medium">Workshop</span>
             </div>
-            <p class="text-xs text-slate-500 mb-1">선수트레이너 (AT)</p>
-            <ul class="text-xs text-slate-600 list-disc list-outside pl-4 space-y-0.5 leading-relaxed">
-              <li>제99회~101회 전국체육대회 종목별(레슬링, 펜싱, 스피드스케이팅) 현장 지원</li>
-              <li>제39회 전국장애인체육대회 골볼 지원팀장</li>
-              <li>포천시청 육상부, 고려대학교 아이스하키부, 서울유나이티드 선수 트레이너</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <!-- 3. Technical & Research Competencies -->
-      <section>
-        <div class="flex items-center gap-2 mb-4">
-          <i data-lucide="cpu" class="w-4 h-4 text-slate-900"></i>
-          <h2 class="text-sm font-bold uppercase tracking-wider text-slate-900">Technical &amp; Analytical Skills</h2>
-        </div>
-        
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
-          <div class="p-3 bg-slate-50 rounded-xl border border-slate-100">
-            <h4 class="font-semibold text-slate-800 mb-1.5 flex items-center gap-1.5">
-              <span class="w-1.5 h-1.5 rounded-full bg-slate-900"></span>
-              Signal Processing &amp; Biomechanics
-            </h4>
-            <p class="text-slate-600 leading-relaxed">
-              sEMG 웨이블릿 변환(Wavelet Intensity), 근 시너지(Muscle Synergy), IMU 센서(Movella DOT) 융합, Visual3D, Kinematics &amp; Kinetics 분석
-            </p>
-          </div>
-
-          <div class="p-3 bg-slate-50 rounded-xl border border-slate-100">
-            <h4 class="font-semibold text-slate-800 mb-1.5 flex items-center gap-1.5">
-              <span class="w-1.5 h-1.5 rounded-full bg-slate-900"></span>
-              Software &amp; Tools
-            </h4>
-            <p class="text-slate-600 leading-relaxed">
-              Python (NumPy, SciPy, PyQt6), MATLAB, OpenSim, Git / GitHub, Computer Vision (MMPose / Markerless Mocap 파이프라인)
+            <h3 class="text-sm font-semibold text-slate-900 mb-1">
+              근골격계 질환 예방 및 스포츠 퍼포먼스 세미나 출강
+            </h3>
+            <p class="text-xs text-slate-600 leading-relaxed">
+              산업체 및 엘리트 선수 트레이닝 센터 대상 맞춤형 운동역학 기반 교육 진행.
             </p>
           </div>
         </div>
       </section>
 
-      <!-- 4. Certifications -->
-      <section>
-        <div class="flex items-center gap-2 mb-4">
-          <i data-lucide="award" class="w-4 h-4 text-slate-900"></i>
-          <h2 class="text-sm font-bold uppercase tracking-wider text-slate-900">Certifications &amp; Licenses</h2>
+      <!-- ================= TAB 3: RESEARCH & PROJECTS ================= -->
+      <section id="tab-research" class="tab-content hidden space-y-6">
+        <div class="space-y-1">
+          <h2 class="text-xl font-bold text-slate-950">Research &amp; Projects</h2>
+          <p class="text-xs text-slate-500">진행 중인 연구 프로젝트와 소프트웨어 개발 아카이브입니다.</p>
         </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
-          <div class="flex items-center gap-2 text-slate-700 bg-white p-2 border border-slate-100 rounded-lg">
-            <span class="w-1 h-1 rounded-full bg-slate-400"></span>
-            <span>선수트레이너 (iKATA)</span>
+
+        <div class="grid grid-cols-1 gap-4">
+          <!-- Project Card 1 -->
+          <div class="p-5 bg-white rounded-xl border border-slate-200/80 hover:shadow-sm transition-all">
+            <div class="flex justify-between items-start mb-2">
+              <h3 class="text-sm font-bold text-slate-900">
+                만성 발목 불안정성(CAI) 환자의 신경근 제어 메커니즘 분석
+              </h3>
+              <span class="mono text-[11px] bg-slate-100 text-slate-600 px-2 py-0.5 rounded">Research</span>
+            </div>
+            <p class="text-xs text-slate-600 leading-relaxed mb-3">
+              근피로 유발 시 하지 관절의 키네마틱스 변화와 표면근전도(sEMG) 웨이블릿 스펙트럼 분석을 통해 부상 재발 메커니즘을 규명합니다.
+            </p>
+            <div class="flex flex-wrap gap-1.5 text-[11px] mono text-slate-500">
+              <span class="bg-slate-50 border border-slate-100 px-2 py-0.5 rounded">sEMG Wavelet</span>
+              <span class="bg-slate-50 border border-slate-100 px-2 py-0.5 rounded">Visual3D</span>
+              <span class="bg-slate-50 border border-slate-100 px-2 py-0.5 rounded">Kinematics</span>
+            </div>
           </div>
-          <div class="flex items-center gap-2 text-slate-700 bg-white p-2 border border-slate-100 rounded-lg">
-            <span class="w-1 h-1 rounded-full bg-slate-400"></span>
-            <span>NASM-PES (퍼포먼스 향상 전문가)</span>
+
+          <!-- Project Card 2 -->
+          <div class="p-5 bg-white rounded-xl border border-slate-200/80 hover:shadow-sm transition-all">
+            <div class="flex justify-between items-start mb-2">
+              <h3 class="text-sm font-bold text-slate-900">
+                IMU 센서 및 PyQt6 기반 다채널 모션 분석 스위트
+              </h3>
+              <span class="mono text-[11px] bg-blue-50 text-blue-700 px-2 py-0.5 rounded">Engineering</span>
+            </div>
+            <p class="text-xs text-slate-600 leading-relaxed mb-3">
+              Movella DOT 무선 IMU 센서로부터 전송되는 쿼터니언 및 가속도 데이터를 실시간으로 동기화하고 공간 궤적을 재구성하는 데스크톱 분석 소프트웨어입니다.
+            </p>
+            <div class="flex flex-wrap gap-1.5 text-[11px] mono text-slate-500">
+              <span class="bg-slate-50 border border-slate-100 px-2 py-0.5 rounded">Python</span>
+              <span class="bg-slate-50 border border-slate-100 px-2 py-0.5 rounded">PyQt6</span>
+              <span class="bg-slate-50 border border-slate-100 px-2 py-0.5 rounded">Movella DOT</span>
+            </div>
           </div>
-          <div class="flex items-center gap-2 text-slate-700 bg-white p-2 border border-slate-100 rounded-lg">
-            <span class="w-1 h-1 rounded-full bg-slate-400"></span>
-            <span>전문/생활/노인 스포츠지도사 (보디빌딩 2급)</span>
-          </div>
-          <div class="flex items-center gap-2 text-slate-700 bg-white p-2 border border-slate-100 rounded-lg">
-            <span class="w-1 h-1 rounded-full bg-slate-400"></span>
-            <span>Biomechanical Analyst of Visual3D (Lv.2)</span>
+
+          <!-- Project Card 3 -->
+          <div class="p-5 bg-white rounded-xl border border-slate-200/80 hover:shadow-sm transition-all">
+            <div class="flex justify-between items-start mb-2">
+              <h3 class="text-sm font-bold text-slate-900">
+                컴퓨터 비전 기반 마커리스(Markerless) 3D 포즈 추정 파이프라인
+              </h3>
+              <span class="mono text-[11px] bg-purple-50 text-purple-700 px-2 py-0.5 rounded">Vision AI</span>
+            </div>
+            <p class="text-xs text-slate-600 leading-relaxed mb-3">
+              다중 카메라 캘리브레이션과 딥러닝 포즈 추정 모델을 결합하여 고가의 광학식 마커 없이도 현장 움직임을 3차원 골격 좌표로 복원하는 연구를 수행합니다.
+            </p>
+            <div class="flex flex-wrap gap-1.5 text-[11px] mono text-slate-500">
+              <span class="bg-slate-50 border border-slate-100 px-2 py-0.5 rounded">MMPose</span>
+              <span class="bg-slate-50 border border-slate-100 px-2 py-0.5 rounded">OpenCV</span>
+              <span class="bg-slate-50 border border-slate-100 px-2 py-0.5 rounded">3D Reconstruction</span>
+            </div>
           </div>
         </div>
       </section>
 
-    </div>
+      <!-- ================= TAB 4: PUBLICATIONS ================= -->
+      <section id="tab-publications" class="tab-content hidden space-y-6">
+        <div class="space-y-1">
+          <h2 class="text-xl font-bold text-slate-950">Publications</h2>
+          <p class="text-xs text-slate-500">학술지 논문 및 학술대회 발표 목록입니다.</p>
+        </div>
+
+        <div class="space-y-4">
+          <!-- Item 1 -->
+          <div class="p-4 bg-white rounded-xl border border-slate-200/80 space-y-1.5">
+            <span class="mono text-[11px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded inline-block">
+              Journal Article
+            </span>
+            <h3 class="text-sm font-semibold text-slate-900">
+              신경근 피로가 만성 발목 불안정성 환자의 착지 시 하지 관절 역학 및 근활성도에 미치는 영향
+            </h3>
+            <p class="text-xs text-slate-500 mono">
+              <strong>양종호</strong>, 공동연구진 (2026)
+            </p>
+            <p class="text-xs text-slate-600 leading-relaxed">
+              국내외 체육학·생체역학 저널 게재 / 투고 논문 상세 정보 및 DOI 링크가 이곳에 연동됩니다.
+            </p>
+          </div>
+
+          <!-- Item 2 -->
+          <div class="p-4 bg-white rounded-xl border border-slate-200/80 space-y-1.5">
+            <span class="mono text-[11px] font-semibold text-slate-600 bg-slate-100 px-2 py-0.5 rounded inline-block">
+              Conference Paper / Abstract
+            </span>
+            <h3 class="text-sm font-semibold text-slate-900">
+              웨이블릿 변환을 활용한 하지 동적 안정성 평가 및 표면근전도 신호 특성 비교
+            </h3>
+            <p class="text-xs text-slate-500 mono">
+              <strong>양종호</strong> (한국운동역학회 학술대회 발표)
+            </p>
+          </div>
+
+          <!-- Item 3 -->
+          <div class="p-4 bg-white rounded-xl border border-slate-200/80 space-y-1.5">
+            <span class="mono text-[11px] font-semibold text-slate-600 bg-slate-100 px-2 py-0.5 rounded inline-block">
+              Master's Thesis
+            </span>
+            <h3 class="text-sm font-semibold text-slate-900">
+              국민대학교 일반대학원 석사학위 논문
+            </h3>
+            <p class="text-xs text-slate-500 mono">
+              지도교수 연구실 | 국민대학교 체육학과 운동역학 전공
+            </p>
+          </div>
+        </div>
+      </section>
+
+    </main>
 
     <!-- Footer -->
-    <footer class="mt-12 pt-6 border-t border-slate-100 flex justify-between items-center text-[11px] text-slate-400">
-      <p>&copy; 2026 Yang Jong-ho. Hosted on GitHub Pages.</p>
-      <a href="#top" class="hover:text-slate-600 no-print transition-colors">Back to top ↑</a>
+    <footer class="border-t border-slate-100 p-6 text-center text-xs text-slate-400 bg-slate-50/50">
+      <p>&copy; 2026 Yang Jong-ho. All rights reserved.</p>
+      <p class="mt-1 text-[11px] text-slate-400">Find the Why. Nothing moves without a reason.</p>
     </footer>
 
   </div>
 
+  <!-- Tab Controller Script -->
   <script>
     lucide.createIcons();
+
+    function switchTab(tabId) {
+      // 1. Hide all tabs
+      document.querySelectorAll('.tab-content').forEach(el => {
+        el.classList.add('hidden');
+      });
+
+      // 2. Remove active state from all buttons
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('active');
+      });
+
+      // 3. Show current tab & activate button
+      const targetContent = document.getElementById('tab-' + tabId);
+      const targetBtn = document.getElementById('btn-' + tabId);
+
+      if (targetContent && targetBtn) {
+        targetContent.classList.remove('hidden');
+        targetBtn.classList.add('active');
+      }
+
+      // Re-trigger icon rendering if needed
+      lucide.createIcons();
+    }
   </script>
 </body>
 </html>
