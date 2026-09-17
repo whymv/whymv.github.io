@@ -1,2 +1,1 @@
-# Jongho.github.io
-Personal website
+# Jongho Yang - Personal website
